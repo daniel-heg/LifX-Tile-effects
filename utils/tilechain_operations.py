@@ -1,4 +1,5 @@
 
+
 def prettyMatrixPrint(matrix):
 
     buff = ""
@@ -47,4 +48,3 @@ def placeListInMatrix(matrix, toPlace):
 
     for i in temp:
         matrix[i[1]] = insertTupleIntoMatrix(matrix[i[1]], i[0], i[2])
-
