@@ -1,7 +1,7 @@
 from utils.tilechain_operations import *
 from utils.asciiFont import *
 from utils.colors import *
-from lifxlan import *
+from lifxlan import LifxLAN
 from time import sleep
 import datetime
 
