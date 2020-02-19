@@ -4,7 +4,7 @@ from lifxlan import LifxLAN
 from time import sleep
 
 
-hearth = [[0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
+canvas = [[0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
           [0, 0, 1, 2, 2, 2, 1, 0, 0, 1, 2, 2, 2, 1, 0, 0],
           [0, 1, 2, 2, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 1, 0],
           [1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1],
@@ -21,6 +21,11 @@ hearth = [[0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
           [0, 0, 0, 0, 0, 0, 1, 2, 2, 1, 0, 0, 0, 0, 0, 0],
           [0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0]]
 
+palette = {0: OFF,
+           1: WHITE,
+           2: RED
+           }
+
 
 def main():
     lan = LifxLAN(1)
@@ -32,13 +37,10 @@ def main():
         num_tiles = t.get_tile_count()
         duration_ms = 5
 
-        palette = {0: [0, 0, 0, 3500],
-                   1: WHITE,
-                   2: RED
-                   }
-
-        matrix = [getTileFromBoard(hearth, 0, 0), getTileFromBoard(
-            hearth, 0, 1), getTileFromBoard(hearth, 1, 1), getTileFromBoard(hearth, 1, 0)]
+        matrix = [getTileFromBoard(canvas, 0, 0),
+                  getTileFromBoard(canvas, 0, 1),
+                  getTileFromBoard(canvas, 1, 1),
+                  getTileFromBoard(canvas, 1, 0)]
 
         try:
 
@@ -51,12 +53,6 @@ def main():
                             sprite.append(palette[matrix[index][x][y]])
 
                     t.set_tile_colors(index, sprite, duration_ms, rapid=False)
-
-            # while True:
-                # for i in range (0, 65535):
-                    # t.set_brightness(i)
-                # for i in range (65535, 0):
-                    # t.set_brightness(i)
 
         except KeyboardInterrupt:
             t.set_tilechain_colors(original_colors)
