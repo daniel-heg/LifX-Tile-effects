@@ -1,50 +1,86 @@
-from utils.tilechain_operations import *
-from utils.colors import *
-from lifxlan import *
+from utils.tilechain_operations import getTileFromBoard, placeListInMatrix
+from utils.colors import OFF, RED, CYAN, GREEN, YELLOW
+from lifxlan import LifxLAN
 from random import randint
 from time import sleep
 
-logoArr = [[2, 1, 1], [2, 2, 2], [3, 1, 3], [3, 2, 4]]  # (x, y, Val)
-screen = [[0] * 16] * 16
+logoArr = [[2, 1, RED],  # (x, y, Val)
+           [2, 2, CYAN],
+           [3, 1, GREEN],
+           [3, 2, YELLOW]]
+screen = [[OFF] * 16] * 16
 direction = 4
 
 
 def touchesBorder(logoArr):
     global direction
     for i in logoArr:
-        if i[0] == 15:
-            direction = randint(6, 12)
-            return direction
-        elif i[0] == 0:
-            direction = randint(0, 6)
-            return direction
-        elif i[1] == 15:
-            rand = randint(1, 12)
 
-            while rand < 10 and rand > 3:
-                rand = randint(1, 12)
+        if i[0] == 15:  # hits right
 
-            direction = rand
-            return direction
-        elif i[1] == 0:
-            direction = randint(3, 9)
-            return direction
+            if 3 < direction < 6:
+                direction = randint(6, 9)
+            elif 0 < direction < 3:
+                direction = randint(9, 12)
+            else:
+                direction = randint(6, 12)
+
+            return
+
+        elif i[0] == 0:  # hits left
+
+            if 9 < direction < 12:
+                direction = randint(0, 3)
+            elif 6 < direction < 9:
+                direction = randint(3, 6)
+            else:
+                direction = randint(0, 6)
+
+            return
+
+        elif i[1] == 15:  # hits bottom
+
+            if 3 < direction < 6:
+                direction = randint(0, 3)
+            elif 6 < direction < 9:
+                direction = randint(9, 12)
+            else:
+                direction = randint(0, 11)
+
+                while 3 < direction < 9:
+                    direction = randint(0, 11)
+
+            return
+
+        elif i[1] == 0:  # hits top
+
+            if 0 < direction < 3:
+                direction = randint(3, 6)
+            elif 9 < direction < 12:
+                direction = randint(6, 9)
+            else:
+                direction = randint(3, 9)
+
+            return
 
 
-def touchesCorner(screen):
+def touchesCorner():
     global direction
-    if screen[0][0] != 0:
+    global screen
+    if screen[0][0] != OFF:
         direction = randint(3, 6)
-        return direction
-    elif screen[0][15] != 0:
+        return True
+    elif screen[0][15] != OFF:
         direction = randint(6, 9)
-        return direction
-    elif screen[15][15] != 0:
+        return True
+    elif screen[15][15] != OFF:
         direction = randint(9, 12)
-        return direction
-    elif screen[15][0] != 0:
+        return True
+    elif screen[15][0] != OFF:
         direction = randint(0, 3)
-        return direction
+        return True
+
+    return False
 
 
 def updateLogo(direction):
@@ -91,17 +127,10 @@ def main():
         num_tiles = t.get_tile_count()
         duration_ms = 5
 
-        palette = {0: OFF,
-                   1: RED,
-                   2: CYAN,
-                   3: GREEN,
-                   4: YELLOW
-                   }
-
         try:
             while True:
 
-                screen = screen = [[0] * 16] * 16
+                screen = screen = [[OFF] * 16] * 16
                 placeListInMatrix(screen, logoArr)
 
                 matrix = [getTileFromBoard(screen, 0, 0), getTileFromBoard(
@@ -111,13 +140,13 @@ def main():
                     sprite = []
                     for x in range(8):
                         for y in range(8):
-                            sprite.append(palette[matrix[index][x][y]])
+                            sprite.append(matrix[index][x][y])
 
                     t.set_tile_colors(index, sprite, duration_ms, rapid=True)
 
                 sleep(0.2)
 
-                if touchesCorner(screen) == None:
+                if touchesCorner() == False:
                     touchesBorder(logoArr)
 
                 updateLogo(direction)
