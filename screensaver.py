@@ -133,8 +133,10 @@ def main():
                 screen = screen = [[OFF] * 16] * 16
                 placeListInMatrix(screen, logoArr)
 
-                matrix = [getTileFromBoard(screen, 0, 0), getTileFromBoard(
-                    screen, 0, 1), getTileFromBoard(screen, 1, 1), getTileFromBoard(screen, 1, 0)]
+                matrix = [getTileFromBoard(screen, 0, 0),
+                          getTileFromBoard(screen, 0, 1),
+                          getTileFromBoard(screen, 1, 1),
+                          getTileFromBoard(screen, 1, 0)]
 
                 for index in range(num_tiles):
                     sprite = []

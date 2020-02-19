@@ -7,7 +7,7 @@ import threading
 import keyboard
 import sys
 
-matrixSize = 16  # int(input("Enter your matrix Size: "))
+matrixSize = 16 
 snakeList = [(1, 1, 'm'), (2, 1, 'm'), (3, 1, 'm'),  # (x, y)
              (3, 2, 'm'), (4, 2, 'm'), (5, 2, 'h')]
 direction = 'd'  # directions are "w" "a" "s" "d"
@@ -151,8 +151,10 @@ def main():
                     foodPos = foodTupel(gameBoard, snakeList)
                     placeFood(gameBoard, foodPos)
 
-                matrix = [getTileFromBoard(gameBoard, 0, 0), getTileFromBoard(
-                    gameBoard, 0, 1), getTileFromBoard(gameBoard, 1, 1), getTileFromBoard(gameBoard, 1, 0)]
+                matrix = [getTileFromBoard(gameBoard, 0, 0),
+                          getTileFromBoard(gameBoard, 0, 1),
+                          getTileFromBoard(gameBoard, 1, 1),
+                          getTileFromBoard(gameBoard, 1, 0)]
 
                 for index in range(num_tiles):
                     sprite = []

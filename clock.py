@@ -23,11 +23,13 @@ def main():
         try:
             while True:
 
-                timeBitMatrix = concatChars(stringToTileMatrix(str(datetime.datetime.now(
-                ).time().hour).zfill(2) + str(datetime.datetime.now().time().minute).zfill(2)))
+                timeBitMatrix = concatChars(stringToTileMatrix(str(datetime.datetime.now().time().hour).zfill(2) +
+                                                               str(datetime.datetime.now().time().minute).zfill(2)))
 
-                matrix = [getTileFromBoard(timeBitMatrix, 0, 0), getTileFromBoard(
-                    timeBitMatrix, 0, 1), getTileFromBoard(timeBitMatrix, 0, 3), getTileFromBoard(timeBitMatrix, 0, 2)]
+                matrix = [getTileFromBoard(timeBitMatrix, 0, 0),
+                          getTileFromBoard(timeBitMatrix, 0, 1),
+                          getTileFromBoard(timeBitMatrix, 0, 3),
+                          getTileFromBoard(timeBitMatrix, 0, 2)]
 
                 for index in range(num_tiles):
                     sprite = []
@@ -35,7 +37,7 @@ def main():
                         for y in range(8):
                             sprite.append(palette[matrix[index][x][y]])
 
-                    t.set_tile_colors(index, sprite, duration_ms, rapid=False)
+                    t.set_tile_colors(index, sprite, duration_ms, rapid=True)
 
                 sleep(5)
 
