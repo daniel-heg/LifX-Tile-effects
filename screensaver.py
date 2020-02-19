@@ -1,10 +1,10 @@
-from lifxlan import *
-from utils.colors import *
 from utils.tilechain_operations import *
+from utils.colors import *
+from lifxlan import *
 from random import randint
 from time import sleep
 
-logoArr = [[1, 1, 1], [1, 2, 2], [2, 1, 3], [2, 2, 4]]  # (x, y, Val)
+logoArr = [[2, 1, 1], [2, 2, 2], [3, 1, 3], [3, 2, 4]]  # (x, y, Val)
 screen = [[0] * 16] * 16
 direction = 4
 
@@ -89,9 +89,8 @@ def main():
         print("Selected TileChain light: {}".format(t.get_label()))
         original_colors = t.get_tilechain_colors()
         num_tiles = t.get_tile_count()
-
-        num_tiles = t.get_tile_count()
         duration_ms = 5
+
         palette = {0: OFF,
                    1: RED,
                    2: CYAN,
@@ -123,7 +122,6 @@ def main():
 
                 updateLogo(direction)
 
-            t.set_tilechain_colors(original_colors)
         except KeyboardInterrupt:
             t.set_tilechain_colors(original_colors)
             print("Done.")

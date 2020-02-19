@@ -1,6 +1,6 @@
-from lifxlan import *
 from utils.tilechain_operations import *
 from utils.colors import *
+from lifxlan import *
 from random import randint, randrange
 from time import sleep
 import threading
@@ -42,7 +42,7 @@ def foodTupel(gameBoard, snakeList):
 
 
 def placeFood(gameBoard, foodTupel):
-    gameBoard[foodTupel[1]] = insertTupleIntoMatrix(
+    gameBoard[foodTupel[1]] = placeTupleInMatrix(
         gameBoard[foodTupel[1]], foodTupel[0], 'f')
 
 
@@ -80,9 +80,9 @@ def moveSnake(snakeList, direction, placeFood):
         print("\n--------------------------------------------------------")
         return
 
-    gameBoard[head[1]] = insertTupleIntoMatrix(
+    gameBoard[head[1]] = placeTupleInMatrix(
         gameBoard[head[1]], head[0], 'm')
-    gameBoard[newHead[1]] = insertTupleIntoMatrix(
+    gameBoard[newHead[1]] = placeTupleInMatrix(
         gameBoard[newHead[1]], newHead[0], 'h')
     snakeList.append(newHead)
 
@@ -90,7 +90,7 @@ def moveSnake(snakeList, direction, placeFood):
         return True
 
     last = snakeList.pop(0)
-    gameBoard[last[1]] = insertTupleIntoMatrix(
+    gameBoard[last[1]] = placeTupleInMatrix(
         gameBoard[last[1]], last[0], '.')
     return False
 
@@ -123,11 +123,11 @@ def main():
         t = lan.get_tilechain_lights()[0]  # grab the first tilechain
         print("Selected TileChain light: {}".format(t.get_label()))
         original_colors = t.get_tilechain_colors()
-
         num_tiles = t.get_tile_count()
         duration_ms = 5
-        palette = {'m': CYAN,
-                   '.': OFF,
+
+        palette = {'.': OFF,
+                   'm': CYAN,
                    'h': GREEN,
                    'f': PURPLE
                    }
