@@ -1,5 +1,5 @@
 
-
+# prints the Matrix to the console in Pretty
 def prettyMatrixPrint(matrix):
 
     buff = ""
@@ -10,7 +10,7 @@ def prettyMatrixPrint(matrix):
         buff += "\n"
     print(buff)
 
-
+# gets one 8x8 block from a (2^n * 2^n) Matrix
 def getTileFromBoard(matrix, indX, indY):
     startIndexX = indX * 8
     endIndexX = (indX + 1) * 8
@@ -29,7 +29,8 @@ def getTileFromBoard(matrix, indX, indY):
 
     return tile
 
-def insertTupleIntoMatrix(arr, index, val):
+# places a tuple (where (x-cordinate,y-cordinate, value)) inside a matrix
+def placeTupleInMatrix(arr, index, val):
     tempArr = []
     counter = 0
 
@@ -42,9 +43,9 @@ def insertTupleIntoMatrix(arr, index, val):
 
     return tempArr
 
-
+# places a list of tuples (where (x-cordinate,y-cordinate, value)) inside of a matrix
 def placeListInMatrix(matrix, toPlace):
     temp = toPlace.copy()
 
     for i in temp:
-        matrix[i[1]] = insertTupleIntoMatrix(matrix[i[1]], i[0], i[2])
+        matrix[i[1]] = placeTupleInMatrix(matrix[i[1]], i[0], i[2])
