@@ -1,0 +1,4 @@
+lifxlan
+numpy
+keyboard
+soundcard
