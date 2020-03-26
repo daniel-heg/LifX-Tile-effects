@@ -12,7 +12,6 @@ def main():
         print("Selected TileChain light: {}".format(t.get_label()))
         original_colors = t.get_tilechain_colors()
         num_tiles = t.get_tile_count()
-        duration_ms = 5
 
         palette = [OFF, GOLD]
 
@@ -27,7 +26,7 @@ def main():
                             sprite.append(
                                 palette[randint(0, len(palette) - 1)])
 
-                    t.set_tile_colors(index, sprite, duration_ms, rapid=True)
+                    t.set_tile_colors(index, sprite, rapid=True)
 
                 sleep(0.05)
 
