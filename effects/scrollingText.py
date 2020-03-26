@@ -1,4 +1,4 @@
-from utils.tilechain_operations import *
+from utils.tilechain_operations import getTileFromBoard
 from utils.asciiFont import *
 from utils.colors import *
 from lifxlan import LifxLAN

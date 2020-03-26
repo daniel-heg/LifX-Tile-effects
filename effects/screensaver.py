@@ -130,7 +130,7 @@ def main():
         try:
             while True:
 
-                screen = screen = [[OFF] * 16] * 16
+                screen = [[OFF] * 16] * 16
                 placeListInMatrix(screen, logoArr)
 
                 matrix = [getTileFromBoard(screen, 0, 0),

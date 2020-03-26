@@ -1,4 +1,4 @@
-from utils.tilechain_operations import *
+from utils.tilechain_operations import getTileFromBoard
 from utils.asciiFont import *
 from utils.colors import *
 from lifxlan import LifxLAN
@@ -15,6 +15,9 @@ def main():
         original_colors = t.get_tilechain_colors()
         num_tiles = t.get_tile_count()
         duration_ms = 5
+
+        DIM_BLUE = BLUE
+        DIM_BLUE[2] = DIM_BLUE[2] / 3
 
         palette = {0: OFF,
                    1: CYAN
