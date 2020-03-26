@@ -143,7 +143,7 @@ def main():
                         for y in range(8):
                             sprite.append(matrix[index][x][y])
 
-                    t.set_tile_colors(index, sprite, rapid=True)
+                    t.set_tile_colors(index, sprite,duration=100, rapid=True)
 
                 sleep(0.2)
 

@@ -6,6 +6,7 @@ from time import sleep
 import soundcard as sc
 import numpy as np
 
+
 def main():
     lan = LifxLAN(1)
     tilechain_lights = lan.get_tilechain_lights()
@@ -35,8 +36,8 @@ def main():
                                 else:
                                     sprite.append([58275, 0, peak * 500, 3500])
 
-                        t.set_tile_colors(index, sprite, rapid=True)
-
+                        t.set_tile_colors(
+                            index, sprite, duration=200, rapid=True)
 
         except KeyboardInterrupt:
             t.set_tilechain_colors(original_colors)

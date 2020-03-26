@@ -41,7 +41,7 @@ def main():
                         for y in range(8):
                             sprite.append(palette[matrix[index][x][y]])
 
-                    t.set_tile_colors(index, sprite, rapid=True)
+                    t.set_tile_colors(index, sprite,rapid=True)
 
                 # printBitmap(toDraw)
                 sleep(0.4)

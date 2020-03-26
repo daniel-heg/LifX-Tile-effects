@@ -144,7 +144,7 @@ def main():
         try:
             while shouldRun:
 
-                sleep(0.1)
+                sleep(0.05)
 
                 if (moveSnake(snakeList, direction, foodPos)):
                     foodPos = foodTupel(gameBoard, snakeList)
@@ -161,7 +161,7 @@ def main():
                         for y in range(8):
                             sprite.append(palette[matrix[index][x][y]])
 
-                    t.set_tile_colors(index, sprite, rapid=True)
+                    t.set_tile_colors(index, sprite,duration=100, rapid=True)
 
             t.set_tilechain_colors(original_colors)
         except KeyboardInterrupt:

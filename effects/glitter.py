@@ -13,7 +13,7 @@ def main():
         original_colors = t.get_tilechain_colors()
         num_tiles = t.get_tile_count()
 
-        palette = [OFF, GOLD]
+        palette = [OFF, OFF, OFF, GOLD]
 
         try:
 
@@ -26,7 +26,7 @@ def main():
                             sprite.append(
                                 palette[randint(0, len(palette) - 1)])
 
-                    t.set_tile_colors(index, sprite, rapid=True)
+                    t.set_tile_colors(index, sprite, duration=150, rapid=True)
 
                 sleep(0.05)
 
