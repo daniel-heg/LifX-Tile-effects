@@ -24,7 +24,7 @@ def main():
                 while True:
 
                     data = mic.record(numframes=1024)
-                    peak = np.floor(np.max(np.abs(data))*512)
+                    peak = np.floor(np.max(np.abs(data))*256)
                     print(peak*500)
 
                     for index in range(num_tiles):
@@ -37,7 +37,7 @@ def main():
                                     sprite.append([58275, 0, peak * 500, 3500])
 
                         t.set_tile_colors(
-                            index, sprite, duration=200, rapid=True)
+                            index, sprite, duration=5, rapid=True)
 
         except KeyboardInterrupt:
             t.set_tilechain_colors(original_colors)
